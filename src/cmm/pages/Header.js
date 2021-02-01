@@ -8,6 +8,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 // import Link from '@material-ui/core/Link';
 import {Link} from 'react-router-dom'
+import axios from 'axios'
+
+const navTest = () => {
+  alert(`서버 연결 확인`)
+}
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -60,6 +65,13 @@ export const Header = (props) => {
             variant="body2"
             href={section.url}
             className={classes.toolbarLink}
+            onClick={e=>{
+              e.preventDefault()
+              axios.get(`http://localhost:8080/`)
+              .then(response => {
+                alert(`${JSON.stringfy(response.data)}`)
+              })
+            }}
           >
             {section.title}
           </Link>
